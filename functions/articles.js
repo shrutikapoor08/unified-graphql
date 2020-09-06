@@ -1,3 +1,6 @@
+
+const fetch = require("node-fetch");
+
 exports.handler = async function(event, context, callback) {
     const response = await fetch('https://dev.to/api/articles?username=shrutikapoor08');
     const dataJson = await response.json();
@@ -13,9 +16,9 @@ exports.handler = async function(event, context, callback) {
      */
    
      // success
-     return res.json({
+     return {
        title: dataJson[0].title,
        description: dataJson[0].description,
        id: dataJson[0].id
-     })
+     };
 }
