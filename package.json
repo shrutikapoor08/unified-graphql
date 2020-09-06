@@ -1,0 +1,22 @@
+{
+  "name": "unified-graphql",
+  "version": "1.0.0",
+  "description": "An interface for creating a unified graphql API with multiple REST and GraphQL endpoints",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shrutikapoor08/unified-graphql.git"
+  },
+  "author": "Shruti Kapoor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shrutikapoor08/unified-graphql/issues"
+  },
+  "homepage": "https://github.com/shrutikapoor08/unified-graphql#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  }
+}
