@@ -2,10 +2,15 @@
 const fetch = require("node-fetch");
 
 exports.handler = async function(event, context, callback) {
-    const API_ENDPOINT = 'https://dev.to/api/articles?username=shrutikapoor08';
+
+    const myusername = "shrutikapoor08";
+    const username =  event.queryStringParameters.username || myusername;
+    const API_ENDPOINT = `https://dev.to/api/articles?username=${username}`;
     const response = await fetch(API_ENDPOINT, {
         headers: { "Accept": "application/json" }
     });
+
+
     const dataJson = await response.json();
      console.log(dataJson[0]);   
    
