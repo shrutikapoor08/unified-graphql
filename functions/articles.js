@@ -11,17 +11,8 @@ exports.handler = async function(event, context, callback) {
         headers: { "Accept": "application/json" }
     });
 
+    const dataJson = await response.json();   
 
-    const dataJson = await response.json();
-     console.log(dataJson[0]);   
-   
-     /*
-     // In case of errors:
-     return res.status(400).json({
-       message: "error happened"
-     })
-     */
-   
      // success
      return callback(null, {
         statusCode: 200,
