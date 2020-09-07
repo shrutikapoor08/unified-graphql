@@ -5,7 +5,7 @@ exports.handler = async function(event, context, callback) {
 
     const myusername = "shrutikapoor08";
     console.log(event);
-    const username =  event.queryStringParameters.username || myusername;
+    const username =  event.body.input.username || myusername;
     const API_ENDPOINT = `https://dev.to/api/articles?username=${username}`;
     const response = await fetch(API_ENDPOINT, {
         headers: { "Accept": "application/json" }
