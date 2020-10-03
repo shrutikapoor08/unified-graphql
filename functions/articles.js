@@ -13,13 +13,22 @@ exports.handler = async function(event, context, callback) {
 
     const dataJson = await response.json();   
 
+    const dataMapper = dataJson.reduce( (arr, item) => { 
+        arr.push ({
+        title: item.title,
+        id: item.id,
+        date_published: item.published_at,
+        url: item.url
+    })
+    return arr;
+}, [])
+
+console.log(dataMapper)
      // success
      return callback(null, {
         statusCode: 200,
         body: JSON.stringify({
-            title: dataJson[0].title,
-            description: dataJson[0].description,
-            id: dataJson[0].id
+           articles: dataMapper
         })
     });
 }
