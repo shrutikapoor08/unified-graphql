@@ -3,9 +3,9 @@ const fetch = require("node-fetch");
 
 exports.handler = async function(event, context, callback) {
 
-    const myusername = "shrutikapoor08";
+    const myUsername = "shrutikapoor08";
     const graphQLParams =  event.body ? JSON.parse(event.body) : undefined
-    const username = graphQLParams ? graphQLParams.input.username : myusername;
+    const username = graphQLParams ? graphQLParams.input.username : myUsername;
     const API_ENDPOINT = `https://dev.to/api/articles?username=${username}`;
     const response = await fetch(API_ENDPOINT, {
         headers: { "Accept": "application/json" }
