@@ -1,3 +1,4 @@
+process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0
 
 const fetch = require("node-fetch");
 
@@ -6,27 +7,23 @@ exports.handler = async function(event, context, callback) {
     const myUsername = "shrutikapoor08";
     const graphQLParams =  event.body ? JSON.parse(event.body) : undefined
     const username = graphQLParams ? graphQLParams.input.username : myUsername;
-    const API_ENDPOINT = `https://dev.to/api/articles?username=${username}`;
+    const API_ENDPOINT = 'https://api.github.com/graphql';
     const response = await fetch(API_ENDPOINT, {
-        headers: { "Accept": "application/json" }
+        method: 'POST',
+        headers: {
+            'Authorization': 'Bearer <your-fetch-token>'
+        },
+        body: JSON.stringify({ query: '{ viewer  { repositories(first:100) { nodes { name, description } } } }' }),
     });
 
-    const dataJson = await response.json();   
 
-    const dataMapper = dataJson.reduce( (arr, item) => { 
-        arr.push ({
-        title: item.title,
-        id: item.id,
-        date_published: item.published_at,
-        url: item.url
-    })
-    return arr;
-}, [])
+    const dataJson = await response.json();
 
      return callback(null, {
         statusCode: 200,
         body: JSON.stringify({
-           articles: dataMapper
+           repos: dataJson
         })
     });
 }
+
