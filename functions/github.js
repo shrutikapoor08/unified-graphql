@@ -6,12 +6,14 @@ exports.handler = async function(event, context, callback) {
 
     const myUsername = "shrutikapoor08";
     const graphQLParams =  event.body ? JSON.parse(event.body) : undefined
+    const token = event.body.token;
+    console.log('token', token);
     const username = graphQLParams ? graphQLParams.input.username : myUsername;
     const API_ENDPOINT = 'https://api.github.com/graphql';
     const response = await fetch(API_ENDPOINT, {
         method: 'POST',
         headers: {
-            'Authorization': 'Bearer <your-fetch-token>'
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({ query: '{ viewer  { repositories(first:100) { nodes { name, description } } } }' }),
     });
