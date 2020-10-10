@@ -6,7 +6,9 @@ exports.handler = async function(event, context, callback) {
 
     const myUsername = "shrutikapoor08";
     const graphQLParams =  event.body ? JSON.parse(event.body) : undefined
-    const token = event.body.token;
+    const {identity, user} = context.clientContext;
+    const token = identity.token;
+
     console.log('token', token);
     const username = graphQLParams ? graphQLParams.input.username : myUsername;
     const API_ENDPOINT = 'https://api.github.com/graphql';
