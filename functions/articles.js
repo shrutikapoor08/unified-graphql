@@ -27,8 +27,6 @@ exports.handler = async function(event, context, callback) {
 
      return callback(null, {
         statusCode: 200,
-        body: JSON.stringify({
-           articles: dataMapper
-        })
+        body: JSON.stringify(dataMapper)
     });
 }
