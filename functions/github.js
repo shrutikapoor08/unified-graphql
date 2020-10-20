@@ -19,8 +19,6 @@ exports.handler = async function(event, context, callback) {
 
      return callback(null, {
         statusCode: 200,
-        body: JSON.stringify({
-           repos: dataJson
-        })
+        body: JSON.stringify( dataJson )
     });
 }
