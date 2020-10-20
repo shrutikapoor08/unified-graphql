@@ -17,8 +17,10 @@ exports.handler = async function(event, context, callback) {
         arr.push ({
         title: item.title,
         id: item.id,
-        date_published: item.published_at,
-        url: item.url
+        date_published: item.readable_publish_date,
+        url: item.url,
+        reactions: item.public_reactions_count,
+            profile_image: item.social_image
     })
     return arr;
 }, [])
