@@ -6,8 +6,10 @@ exports.handler = async function(event, context, callback) {
 
     const myUsername = "shrutikapoor08";
     const graphQLParams =  event.body ? JSON.parse(event.body) : undefined
-    const {identity, user} = context.clientContext;
-    const token = identity.token;
+    const token = event.headers.token;
+    console.log({event});
+    console.log({context});
+    console.log({callback});
 
     console.log('token', token);
     const username = graphQLParams ? graphQLParams.input.username : myUsername;
